@@ -1,7 +1,9 @@
 .DS_Store
 
-dist/
+.cache
 node_modules
 
 .idea
 .vscode
+
+public
