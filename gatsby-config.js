@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: '/',
   siteMetadata: {
     title: '今集亭',
     description: 'JIN‘s website.',
