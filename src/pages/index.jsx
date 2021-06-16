@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import Page from '../components/page'
 import Seo from '../components/seo'
+import shuffle from '../utils/array'
 import './index.scss'
 
 const Index = () => {
@@ -18,7 +19,7 @@ const Index = () => {
     for (let i = 1; i < 151; i += 1) {
       dataList.push(i)
     }
-    return dataList.map((item) => (<div key={item} className={`item pkm-${item}`} />))
+    return shuffle(dataList).map(item => (<div key={item} className={`item pkm-${item}`} />))
   }
   const eggClassNames = classnames({
     egg: true,
