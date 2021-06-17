@@ -7,10 +7,6 @@ on:
 
   workflow_dispatch:
 
-env:
-  GITHUB_NAME: JIN
-  GITHUB_EMAIL: jinjiting2690@gmail.com
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,6 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
+
+      - name: Init git config
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'robot_jin'
 
       - name: Build
         run: yarn build
