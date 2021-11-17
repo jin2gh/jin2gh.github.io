@@ -1,8 +1,11 @@
 module.exports = {
   siteMetadata: {
     title: '今集亭',
-    description: 'JIN‘s website.',
+    description: 'jin‘s website.',
     author: 'JINJITING',
   },
-  plugins: ['gatsby-plugin-sass'],
+  plugins: [
+    'gatsby-plugin-pnpm', // pnpm 下 webpack 不会正常打包
+    'gatsby-plugin-sass',
+  ],
 }
