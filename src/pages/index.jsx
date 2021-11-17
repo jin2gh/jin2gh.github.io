@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classnames from 'classnames'
 import Page from '../components/page'
 import Seo from '../components/seo'
@@ -7,6 +7,7 @@ import './index.scss'
 
 const Index = () => {
   const [visible, setVisible] = useState(false)
+  const [dataList, setDataList] = useState([])
   const handleEasterEgg = () => {
     setVisible(true)
   }
@@ -14,17 +15,20 @@ const Index = () => {
     // eslint-disable-next-line no-undef
     window.location.href = 'https://github.com/JINJITING'
   }
-  const renderList = () => {
-    const dataList = []
-    for (let i = 1; i < 151; i += 1) {
-      dataList.push(i)
-    }
-    return shuffle(dataList).map(item => (<div key={item} className={`item pkm-${item}`} />))
-  }
+
   const eggClassNames = classnames({
     egg: true,
     'item pkm-151': visible,
   })
+  useEffect(() => {
+    if (!dataList?.length) {
+      const data = []
+      for (let i = 1; i < 151; i += 1) {
+        data.push(i)
+      }
+      setDataList(shuffle(data))
+    }
+  }, [dataList])
   return (
     <Page className="page">
       <Seo title="Home" />
@@ -36,7 +40,7 @@ const Index = () => {
           <div className="rsd" />
           <div className="foot" tabIndex={-42} onClick={jumpToGithub}>Welcome to my github</div>
         </div>
-        {renderList()}
+        {dataList?.map(item => (<div key={item} className={`item pkm-${item}`} />))}
       </main>
     </Page>
   )
