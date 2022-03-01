@@ -6,10 +6,20 @@ import shuffle from '../utils/array'
 import './index.scss'
 
 const Index = () => {
-  const [visible, setVisible] = useState(false)
+  const MAX = 151
   const [dataList, setDataList] = useState([])
-  const handleEasterEgg = () => {
-    setVisible(true)
+  const [list, setList] = useState([])
+
+  const onClickItem = (id) => {
+    console.log(id)
+    const ans = list.length
+    if (ans === id) {
+      setList([...list, id])
+    }
+  }
+  const onClickEasterEgg = () => {
+    setDataList([])
+    setList([])
   }
   const jumpToGithub = () => {
     // eslint-disable-next-line no-undef
@@ -18,12 +28,13 @@ const Index = () => {
 
   const eggClassNames = classnames({
     egg: true,
-    'item pkm-151': visible,
+    'item pkm-151': list.length === MAX - 1,
   })
+
   useEffect(() => {
     if (!dataList?.length) {
       const data = []
-      for (let i = 1; i < 151; i += 1) {
+      for (let i = 0; i < MAX - 1; i += 1) {
         data.push(i)
       }
       setDataList(shuffle(data))
@@ -36,11 +47,11 @@ const Index = () => {
         <div className="content">
           <div className="head">Hello, World!</div>
           <div className="lsd" />
-          <div className={eggClassNames} onClick={handleEasterEgg} />
+          <div className={eggClassNames} onClick={onClickEasterEgg} />
           <div className="rsd" />
           <div className="foot" tabIndex={-42} onClick={jumpToGithub}>Welcome to my github</div>
         </div>
-        {dataList?.map(item => (<div key={item} className={`item pkm-${item}`} />))}
+        {dataList?.map(item => (<div key={item} className={`item pkm-${item + 1} ${list[item] >= 0 ? 'get' : ''}`} onClick={() => onClickItem(item)} />))}
       </main>
     </Page>
   )

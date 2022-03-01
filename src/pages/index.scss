@@ -34,6 +34,10 @@ $border-radius: 6px;
     background-size: $img-width auto;
     background-origin: padding-box;
     border-radius: $border-radius;
+
+    &.get {
+      opacity: 0;
+    }
   }
 
   .content {
