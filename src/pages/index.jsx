@@ -18,6 +18,7 @@ const Index = () => {
     }
   }
   const onClickEasterEgg = () => {
+    if (list.length !== MAX) return
     setDataList([])
     setList([])
   }
@@ -45,11 +46,11 @@ const Index = () => {
       <Seo title="Home" />
       <main className="box">
         <div className="content">
-          <div className="head">Hello, World!</div>
+          <div className="head">Hello, I am JIN</div>
           <div className="lsd" />
           <div className={eggClassNames} onClick={onClickEasterEgg} />
           <div className="rsd" />
-          <div className="foot" tabIndex={-42} onClick={jumpToGithub}>Welcome to my github</div>
+          <div className="foot" tabIndex={-42} onClick={jumpToGithub}>Welcome to my website</div>
         </div>
         {dataList?.map(item => (<div key={item} className={`item pkm-${item + 1} ${list[item] >= 0 ? 'get' : ''}`} onClick={() => onClickItem(item)} />))}
       </main>

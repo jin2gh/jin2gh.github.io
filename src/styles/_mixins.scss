@@ -3,3 +3,9 @@
 @mixin gobImg($url) {
   background-image: url($img-prefix + $url);
 }
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
