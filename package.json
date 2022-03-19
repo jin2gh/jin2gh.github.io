@@ -7,7 +7,7 @@
   "author": "JIN <jinjiting2690@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build  --prefix-paths && gh-pages -d public",
+    "build": "gatsby build --prefix-paths",
     "start": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "gatsby serve",
