@@ -24,7 +24,7 @@ const Index = () => {
   }
   const jumpToGithub = () => {
     // eslint-disable-next-line no-undef
-    window.location.href = 'https://github.com/JINJITING'
+    window.location.href = 'https://github.com/jin2gh'
   }
 
   const eggClassNames = classnames({

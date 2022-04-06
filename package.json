@@ -1,9 +1,9 @@
 {
-  "name": "jinjiting.github.io",
+  "name": "jin2gh.github.io",
   "version": "0.1.0",
   "description": "personal site",
   "main": "index.js",
-  "repository": "https://github.com/JINJITING/jinjiting.github.io.git",
+  "repository": "https://github.com/jin2gh/jin2gh.github.io.git",
   "author": "JIN <jinjiting2690@gmail.com>",
   "license": "MIT",
   "scripts": {
