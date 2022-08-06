@@ -38,6 +38,10 @@ $border-radius: 6px;
     &.get {
       opacity: 0;
     }
+
+    &.whoami {
+      background-position: 0 0;
+    }
   }
 
   .content {
