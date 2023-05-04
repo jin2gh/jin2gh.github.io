@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import classnames from 'classnames'
-import Page from '../components/page'
-import Seo from '../components/seo'
-import shuffle from '../utils/array'
+import Page from '@/components/page'
+import shuffle from '@/utils/array'
+import type { TimeoutId } from '@/typings'
 import './index.scss'
 
 const Index = () => {
   const MAX = 150
-  const [clock, setClock] = useState(-1)
-  const [cnt, setCnt] = useState(0)
-  const [dataList, setDataList] = useState([])
+  const [clock, setClock] = useState<number>(-1)
+  const [cnt, setCnt] = useState<number>(0)
+  const [dataList, setDataList] = useState<number[]>([])
   const [hint, setHint] = useState(false)
   const [slash, setSlash] = useState(false)
   const [visible, setVisible] = useState(false)
-
 
   const reset = () => {
     setCnt(0)
@@ -22,7 +21,7 @@ const Index = () => {
     setClock(0)
   }
 
-  const onClickItem = index => {
+  const onClickItem = (index: number) => {
     if (cnt === index) {
       setCnt(cnt + 1)
       setClock(0)
@@ -43,12 +42,13 @@ const Index = () => {
     'item pkm-151': visible,
   })
 
-  const pkmCN = index => classnames({
-    'item': true,
-    [`pkm-${index + 1}`]: true,
-    'get': cnt > index,
-    'whoami': slash && hint && cnt === index,
-  })
+  const pkmCN = (index: number) =>
+    classnames({
+      item: true,
+      [`pkm-${index + 1}`]: true,
+      get: cnt > index,
+      whoami: slash && hint && cnt === index,
+    })
 
   useEffect(() => {
     if (!dataList?.length) {
@@ -68,7 +68,7 @@ const Index = () => {
   }, [cnt])
 
   useEffect(() => {
-    let timer = null
+    let timer: TimeoutId = 0
     if (clock >= 0) {
       setSlash(clock >= 10)
       timer = setTimeout(() => {
@@ -79,7 +79,7 @@ const Index = () => {
   }, [clock])
 
   useEffect(() => {
-    let timer = null
+    let timer: TimeoutId = 0
     if (slash) {
       timer = setTimeout(() => {
         setHint(() => !hint)
@@ -87,21 +87,26 @@ const Index = () => {
     } else {
       setHint(false)
     }
-    return () => clearTimeout(timer)
+    return () => {
+      if (timer) clearTimeout(timer)
+    }
   }, [hint, slash])
 
   return (
     <Page className="page">
-      <Seo title="Home" />
       <main className="box">
         <div className="content">
           <div className="head">Hello, I am JIN</div>
           <div className="lsd" />
           <div className={eggCN} onClick={onClickEasterEgg} />
           <div className="rsd" />
-          <div className="foot" tabIndex={-42} onClick={jumpToGithub}>Welcome to my website</div>
+          <div className="foot" tabIndex={-42} onClick={jumpToGithub}>
+            Welcome to my website
+          </div>
         </div>
-        {dataList?.map(i => (<div key={i} className={pkmCN(i)} onClick={() => onClickItem(i)} />))}
+        {dataList?.map(i => (
+          <div key={i} className={pkmCN(i)} onClick={() => onClickItem(i)} />
+        ))}
       </main>
     </Page>
   )

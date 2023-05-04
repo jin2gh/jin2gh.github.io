@@ -1,4 +1,4 @@
-const shuffle = dataList => {
+const shuffle = (dataList: number[]): number[] => {
   for (let i = dataList.length - 1; i >= 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1))
     const tmp = dataList[i]

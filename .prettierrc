@@ -4,5 +4,12 @@
   "singleQuote": true,
   "trailingComma": "all",
   "endOfLine": "lf",
-  "jsxBracketSameLine": false
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
 }
