@@ -1,14 +1,13 @@
 @use 'sass:math';
 @use '../styles/mixins.scss';
 
-// 13 15 3 12 6 11
-// 15 13 4 13 5 14
-$img-width: 640px;
-$img-cols: 10;
-$base-width: math.div($img-width, $img-cols);
-$columns: 15;
-$rows: 13;
+$img_w: 640px;
+$img_h: 1024px;
+$img_cols: 10;
+$base-width: math.div($img_w, $img_cols);
 $border-radius: 6px;
+$xl-cols: 15;
+$xl-rows: 13;
 
 .page {
   @include mixins.flex-center;
@@ -16,21 +15,22 @@ $border-radius: 6px;
   width: 100vw;
   height: 100vh;
   background-color: orange;
+  font-family: 'LLPIXEL';
 }
 
 .box {
   display: grid;
-  grid-template-rows: repeat($rows, $base-width);
-  grid-template-columns: repeat($columns, $base-width);
-  max-width: $base-width * $columns;
-  max-height: $base-width * $rows;
+  grid-template-rows: repeat($xl-rows, $base-width);
+  grid-template-columns: repeat($xl-cols, $base-width);
+  max-width: $base-width * $xl-cols;
+  max-height: $base-width * $xl-rows;
 
   .item {
     @include mixins.gobImg('/pkm/quest.png');
 
     overflow: hidden;
     background-repeat: no-repeat;
-    background-size: $img-width auto;
+    background-size: $img_w $img_h;
     background-origin: padding-box;
     border-radius: $border-radius;
     cursor: url('../assets/icons/ball.png') 0 0, pointer;
@@ -86,9 +86,50 @@ $border-radius: 6px;
 
 @for $i from 0 through 151 {
   .pkm-#{$i} {
-    $x: -($i % $img-cols * $base-width);
-    $y: -(math.floor(math.div($i, $img-cols)) * $base-width);
+    $x: -($i % $img_cols * $base-width);
+    $y: -(math.floor(math.div($i, $img_cols)) * $base-width);
 
     background-position: $x $y;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  $scale: 0.625;
+  $xs-width: $base-width * $scale;
+  $xs-cols: 9;
+  $xs-rows: 19;
+
+  .box {
+    grid-template-rows: repeat($xs-rows, $xs-width);
+    grid-template-columns: repeat($xs-cols, $xs-width);
+    max-width: $base-width * $xs-cols;
+    max-height: $base-width * $xs-rows;
+
+    .content {
+      grid-row-start: 9;
+      grid-row-end: 12;
+      grid-column-start: 2;
+      grid-column-end: 9;
+      grid-template-rows: 1fr $xs-width 1fr;
+      grid-template-columns: 1fr $xs-width 1fr;
+      font-size: 28px;
+    }
+
+    .item {
+      background-size: $img_w * $scale $img_h * $scale;
+    }
+
+    .foot {
+      font-size: 18px;
+    }
+  }
+
+  @for $i from 0 through 151 {
+    .pkm-#{$i} {
+      $x: -($i % $img_cols * $xs-width);
+      $y: -(math.floor(math.div($i, $img_cols)) * $xs-width);
+
+      background-position: $x $y;
+    }
   }
 }

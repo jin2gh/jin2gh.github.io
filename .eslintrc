@@ -10,6 +10,6 @@
     "semi": 0,
     "@typescript-eslint/semi": [2, "never"],
     "space-before-function-paren": 0,
-    "@typescript-eslint/space-before-function-paren": [2, "always"],
+    "@typescript-eslint/space-before-function-paren": [2, "always"]
   }
 }

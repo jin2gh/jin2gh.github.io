@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import classnames from 'classnames'
 import Page from '@/components/page'
+import SEO from '@/components/seo'
 import shuffle from '@/utils/array'
 import type { TimeoutId } from '@/typings'
 import './index.scss'
+
+export const Head = () => <SEO />
 
 const Index = () => {
   const MAX = 150
